@@ -1,7 +1,7 @@
 {
   "name":"modulebz/form",
   "description": "Генерация json для форм",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "keywords": ["php","form"],
   "homepage": "https://module.bz",
   "license": "MIT",
