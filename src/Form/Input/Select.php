@@ -19,6 +19,8 @@ class Select extends Input {
     protected $ajax_data;
     /** @var string $ajax_url ссылка для ajax запросов */
     protected $ajax_url = '';
+    /** @var bool Можно ли добавлять новые сущности названием */
+    protected $can_add_value = false;
 
     /**
      * Установка необходимости множественного выбора
@@ -80,6 +82,16 @@ class Select extends Input {
         return $this;
     }
 
+    /**
+     * @param bool $can_add_value
+     * @return Select
+     */
+    public function setCanAddValue(bool $can_add_value): Select
+    {
+        $this->can_add_value = $can_add_value;
+        return $this;
+    }
+
 
     protected function getType(): int {
         if($this->ajax)     return EType::SELECT_AJAX;
@@ -89,12 +101,13 @@ class Select extends Input {
     }
     public function toJSON(): array {
         $res = parent::toJSON();
-        $res['input_opt']['multiple']  = $this->multiple;
-        $res['input_opt']['search']    = $this->search;
-        $res['input_opt']['options']   = $this->options;
-        $res['input_opt']['ajax']      = $this->ajax;
-        $res['input_opt']['ajax_data'] = $this->ajax_data;
-        $res['input_opt']['ajax_url']  = $this->ajax_url;
+        $res['input_opt']['multiple']       = $this->multiple;
+        $res['input_opt']['search']         = $this->search;
+        $res['input_opt']['options']        = $this->options;
+        $res['input_opt']['ajax']           = $this->ajax;
+        $res['input_opt']['ajax_data']      = $this->ajax_data;
+        $res['input_opt']['ajax_url']       = $this->ajax_url;
+        $res['input_opt']['can_add_value']  = $this->can_add_value;
         return $res;
     }
 }

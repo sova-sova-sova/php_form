@@ -12,6 +12,12 @@ class Input extends LayoutInput {
     /** @var string $placeholder  Placeholder для поля ввода */
     protected $placeholder = '';
 
+    /** @var bool $disabled  Disabled поле */
+    protected $disabled = false;
+
+    /** @var bool $visible  Visible поле */
+    protected $visible = false;
+
     /** @var string $name Аттрибут Name поля ввода, Ключ из массва VALUES для подстановки значения */
     protected $name = '';
 
@@ -53,6 +59,27 @@ class Input extends LayoutInput {
         return $this;
     }
 
+    /**
+     * @param bool $disabled
+     * @return Input
+     */
+    public function setDisabled(bool $disabled): Input
+    {
+        $this->disabled = $disabled;
+        return $this;
+    }
+
+    /**
+     * @param bool $visible
+     * @return Input
+     */
+    public function setVisible(bool $visible): Input
+    {
+        $this->visible = $visible;
+        return $this;
+    }
+
+
     protected function getType():int{ return 0; }
 
     public function toJSON() : array {
@@ -64,9 +91,11 @@ class Input extends LayoutInput {
             $opt['name'] = $c;
         }
         $opt['value'] = $this->value;
-        if($c = $this->name)        $opt['name'] = $c;
-        if($c = $this->label)       $opt['label'] = $c;
+        if($c = $this->name)        $opt['name']        = $c;
+        if($c = $this->label)       $opt['label']       = $c;
         if($c = $this->placeholder) $opt['placeholder'] = $c;
+        if($c = $this->disabled)    $opt['disabled']    = $c;
+        if($c = $this->visible)     $opt['visible']    = $c;
         $res['input_opt'] = $opt;
         return $res;
     }
